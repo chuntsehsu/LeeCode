@@ -1,0 +1,10 @@
+def climbStairs(self, n: int) -> int:
+    if n < 3:
+        return n
+    else :
+        one = 1
+        two = 2
+        run = n - 2
+        for _ in range(run):
+          one, two = two, one + two
+        return two
