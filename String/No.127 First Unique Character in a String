@@ -1,0 +1,53 @@
+'''
+Input: s = "loveleetcode"
+Output: 2
+Given a string s, return the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+Constraints:
+
+1 <= s.length <= 105
+s consists of only lowercase English letters.
+'''
+
+from collections import Counter
+# sinple 
+s = 'loveleetcode'
+cs = Counter(s)
+for i in s:
+  if cs[i] == 1:
+    print(s.index(i))
+----------------------------------------------------    
+# str.count(sub, start= 0,end=len(string))
+s = 'loveleetcode' # str(s)
+index = [ s.index(i) for i in Counter(s) if (s.count(i) == 1)] 
+if len(index) > 0:
+  print(min(index)) 
+----------------------------------------------
+# dict
+s = 'loveleetcode'
+ans = -1
+dic = {}
+for i in s:
+  if i not in dic:
+    dic[i] = 1
+  else:
+    dic[i] += 1 
+
+for n in range(len(s)):
+  if dic[s[n]] == 1:
+    ans = n
+    break
+print(ans)
+------------------------------------------------
+from collections import OrderedDict, Counter
+# OrderedDict & Counter
+s = 'loveleetcode'
+for i, n in OrderedDict(Counter(s)).items():
+  if n == 1:
+    print(s.index(i))
+----------------------------------------------
+# only for
+s = 'loveleetcode'
+for i in range(len(s)):
+  if s[i] not in s[:i] and s[i] not in s[i+1:]:
+    print(i)   
